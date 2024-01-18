@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Convertor</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        background-image: url("R.jpg");
+    }
+
+    /* .container{
+        text-align: center;
+    } */
+
+    .calculator_space{
+        display: block;
+        margin-top: 10vh;
+        margin-right: auto;
+        margin-left: auto;
+        width: 320px;
+        height: 570px;
+        background-color: black;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .selection_space{
+        height: 120px;
+        width: 90%;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 20px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: white;
+        /* text-align: center; */
+        /* background-color: gray; */
+    }
+
+    .option_2{
+        text-align: right;
+    }
+
+    .selection_space input{
+        outline: none;
+        border: none;
+        background-color: black;
+        border-bottom: solid #da9e08;
+        width: 100px;
+        color: white;
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        cursor: pointer;
+    }
+
+    #option_values{
+        color: white;
+        text-decoration: none;
+    }
+
+    .value_space{
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 20px;
+    }
+
+    .value_space input{
+        outline: none;
+        border: none;
+        border-bottom: solid #da9e08;
+        background-color: black;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 30px;
+        width: 25%;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .convert_button{
+        text-align: center;
+        /* border: solid white; */
+        margin-top: 20px;
+        /* height: ; */
+        width: 30%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 25px;
+        background-color: #da9e08;
+        font-size: 15pxpx;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        color: black;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .convert_button:hover{
+        opacity: 0.7;
+    }
+
+    .result_space{
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 20px;
+        padding-top: 30px;
+    }
+
+    .go_back{
+        text-align: center;
+        margin-top: 60px;
+        color: white;
+        width: 30px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid whitesmoke;
+        border-radius: 20px;
+    }
+
+    .go_back a{
+        font-size: 15px;
+        color: wheat;
+        text-decoration: none;
+    }
+</style>
+<body>
+    <div class = "container">
+        <div class = "calculator_space">
+            <div class = "selection_space">
+                <div class="option_1">
+                    <form>
+                        <label for="option1">Unit 1: </label>
+                        <input list = "temperature" name = "temperature" id = "temperature_1">
+                        <datalist id = "temperature">
+                            <option value = "Celsius" id = "option_values"></option>
+                            <option value="Fahrenheit" id = "option_values"></option>
+                            <option value="Kelvin" id = "option_values"></option>
+                        </datalist>
+                    </form>
+                </div>
+                <div class="option_2">
+                    <form>
+                        <label for="option2">Unit 2: </label>
+                        <input list = "temperature" name = "temperature" id = "temperature_2">
+                        <datalist id = "temperature">
+                            <option value = "Celsius" id = "option_values" style="color: white"></option>
+                            <option value="Fahrenheit" id = "option_values"></option>
+                            <option value="Kelvin" id = "option_values"></option>
+                        </datalist>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Value Space -->
+            <div class = "value_space">
+                <form>
+                    <label for="value">Temperature: </label>
+                    <br>
+                    <input type="number" name="value" id="temp">
+                </form>
+            </div>
+
+            <br>
+            <div class = "convert_button" onclick="calc()">
+                Convert
+            </div>
+
+            <div class="result_space">
+                <p>Result:</p>
+                <div class = "result" style = "opacity: 0.2;">XX</div>
+            </div>
+
+            <div class ="go_back"><a href="calculator.html" style="font-size: 30px;">&#x21B5;</a></div>
+        </div>
+    </div>
+
+    <script>
+        function calc(){
+            let init = document.getElementById("temperature_1").value;
+            let fint = document.getElementById("temperature_2").value;
+            let temp = Number(document.getElementById("temp").value);
+            let result = "";
+            
+            if(init === "Celsius" && fint === "Kelvin"){
+                result = Number(temp)+273;
+            } else if(init === "Kelvin" && fint === "Celsius"){
+                result = Number(temp)-273;
+            }
+
+            if(init === "Celsius" && fint === "Fahrenheit"){
+                result = (temp * (9/5)) + 32;
+            } else if(init === "Fahrenheit" && fint === "Celsius"){
+                result = (temp - 32)*(5/9);
+            }
+
+            if(init === "Fahrenheit" && fint === "Kevlin"){
+                result = (temp - 32)*(5/9) + 273;
+            } else if(init === "Kelvin" && fint === "Fahrenheit"){
+                result = ((temp-273) * (9/5)) + 32;
+            }
+
+            document.querySelector(".result").innerHTML = result.toFixed(2);
+            document.querySelector(".result").style.opacity = "1";
+        }
+    </script>
+</body>

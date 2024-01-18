@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Convertor</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        background-image: url("R.jpg");
+    }
+
+    /* .container{
+        text-align: center;
+    } */
+
+    .calculator_space{
+        display: block;
+        margin-top: 10vh;
+        margin-right: auto;
+        margin-left: auto;
+        width: 320px;
+        height: 570px;
+        background-color: black;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .convertors{
+        height: 100px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        padding-top: 50px;
+        padding-left: 10px;
+        border-bottom: solid gray;
+    }
+
+    .convertors form{
+        display: inline-flex;
+    }
+
+    .convertors input{
+        margin-top: 10px;
+        width: 100px;
+        background-color: black;
+        color: white;
+        box-shadow: none;
+        border: none;
+        border-bottom: solid #da9e08;
+        outline: none;
+    }
+
+    .final_curr{
+        padding-left: 25px;
+    }
+
+    .reverser img{
+        padding-left: 27px;
+        width: 30px;
+        height: auto;
+    }
+
+    .result_space{
+        padding-top: 30px;
+        text-align: center;
+        color: white;
+        font-size: 25px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .result_space input{
+        text-align: center;
+        margin-top: 10px;
+        width: 100px;
+        background-color: black;
+        color: white;
+        box-shadow: none;
+        border: none;
+        border-bottom: solid #04D9ff;
+        outline: none;
+    }
+
+    .convert_button{
+        cursor: pointer;
+    }
+
+    .convert_button:hover{
+        color: #da9e08;
+    }
+
+</style>
+<body>
+    <div class = "container">
+        <div class = "calculator_space">
+            <!-- Currency Convertor Choice-->
+            <div class="convertors">
+                <form>
+                    <div id = "initial_curr">
+                        <label for="initial_curr">Initial Currency:
+                            <br>
+                            <input type="text" name = "init_curr" placeholder="Initial Currency">
+                        </label>
+                    </div>
+
+                    <div class = "reverser"><img src="Convertor/exch.png"></div>
+
+                    <div id="final_curr">
+                        <label for="initial_curr">Final Currency:
+                            <br>
+                            <input type="text" name = "init_curr" placeholder="Final Currency">
+                        </label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Data and Result space -->
+            <div class="result_space">
+                <div id = "value_box">
+                <label for = "Enter Value" class = "init">Enter Value:
+                    <br>
+                    <input type="number" id="initial">
+                </label>
+            </div>
+
+                <br>
+                <div class="convert_button" py-click="calcu()">Convert</div>
+                <br>
+
+                <div class = "result">
+                    <p class = "resultant_curr" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">Result:</p>
+                    <div id = "final_value" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; opacity: 0.1;">Answer</div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    <script>
+        // var initial = "";
+        // var final = "";
+        // function calcu(){
+        //     initial = document.getElementById("initial").value;
+        //     console.log(initial);
+        //     final = initial*80;
+        //     document.querySelector(".final_value").innerText = final;
+        //     document.querySelector(".final_value").style.opacity = "1";
+        // }
+    </script>
+</body>
+</html>

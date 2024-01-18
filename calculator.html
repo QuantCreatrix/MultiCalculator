@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Calculator</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        background-image: url("R.jpg");
+    }
+
+    .container{
+        text-align: center;
+    }
+
+    .calculator_space{
+        display: block;
+        margin-top: 10vh;
+        margin-right: auto;
+        margin-left: auto;
+        width: 320px;
+        height: 570px;
+        background-color: black;
+        border-radius: 15px;
+    }
+
+    .result_space{
+        display: block;
+        position: relative;
+        margin-bottom: 0px;
+        height: 170px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 35px;
+        text-align: right;
+        color: white;
+        border-bottom: solid white;
+        border-width: 1px;
+        overflow: hidden;
+    }
+
+    .result{
+        position: absolute; 
+        bottom: 0; 
+        right: 0; 
+        margin-right: 28px;
+    }
+
+    .func_space{
+        display: grid;
+        margin: 5px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1.1fr 1.1fr 1.1fr 1.1fr 1.1fr;
+        grid-row-gap: 20px;
+        /* background-color: white; */
+        margin-top: 30px;
+    }
+
+    #element{
+        text-align: center;
+        color: white;
+        justify-self: center;
+        width: 50px;
+        height: 50px;
+        background-color: rgb(44, 45, 45);
+        border-radius: 25px;
+        font-size: 22px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #element p{
+        padding: 0px;
+        margin-top: 12px;
+    }
+
+    #element:hover{
+        opacity: 0.8;
+        cursor: pointer;
+    }
+
+    #history{
+        display: none;
+        position: absolute;
+        bottom: 0;
+        font-size: 25px;
+        margin-left: 15px;
+        cursor: pointer;
+    }
+
+    .calculator_space .option_space{
+        display: none;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 2fr 2fr;
+        grid-gap: 10px;
+        color: white;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 15px;
+        padding-top: 150px;;
+    }
+
+    #option_element{
+        color: gray;
+        cursor: pointer;
+    }
+
+    #option_element a{
+        text-decoration: none;
+        color: gray;
+    }
+
+    #option_element img{
+        width: 40%;
+        height: auto;
+    }
+
+    .bmi{
+        padding-top: 51px;
+    }
+
+    #option_element a:hover{
+        color: cyan;
+    }
+
+</style>
+
+<body>
+    <div class = "container">
+        <div class = "calculator_space">
+            <!-- Result Space -->
+            <div class="result_space">
+                <div class="result">0</div>
+                <div id = "history" onclick="history()">&#x21BA;</div>
+            </div>
+
+            <!-- Function space -->
+            <div class="func_space">
+                <div id = "element" class = "all_clear" onclick = "clear1()" style="background-color: gray;"><p>AC</p></div>
+                <div id = "element" class = "plus_minus" onclick = "dell()" style="background-color: gray;"><p>Del</p></div>
+                <div id = "element" class = "percen" onclick = "pm()" style="background-color: gray;"><p>+/-</p></div>
+                <div id = "element" class = "divide" onclick = "calc('/')" style="background-color: #ffa700;"><p>/</p></div>
+                <div id = "element" class = "seven" onclick = "calc(7)"><p>7</p></div>
+                <div id = "element" class = "eight" onclick = "calc(8)"><p>8</p></div>
+                <div id = "element" class = "nine" onclick = "calc(9)"><p>9</p></div>
+                <div id = "element" class = "mult" onclick = "calc('*')" style="background-color: #ffa700;"><p>x</p></div>
+                <div id = "element" class = "four" onclick = "calc(4)"><p>4</p></div>
+                <div id = "element" class = "five" onclick = "calc(5)"><p>5</p></div>
+                <div id = "element" class = "six" onclick = "calc(6)"><p>6</p></div>
+                <div id = "element" class = "minus" onclick = "calc('-')" style="background-color: #ffa700;"><p>-</p></div>
+                <div id = "element" class = "three" onclick = "calc(3)"><p>3</p></div>
+                <div id = "element" class = "two" onclick = "calc(2)"><p>2</p></div>
+                <div id = "element" class = "one" onclick = "calc(1)"><p>1</p></div>
+                <div id = "element" class = "plus" onclick = "calc('+')" style="background-color: #ffa700;"><p>+</p></div>
+                <div id = "element" class = "nav" onclick = "nav()"><p>&#8801;</p></div>
+                <div id = "element" class = "zero" onclick = "calc(0)"><p>0</p></div>
+                <div id = "element" class = "dot" onclick = "calc('.')"><p>.</p></div>
+                <div id = "element" class = "equals" onclick = "result()" style="background-color: #ffa700;"><p>=</p></div>
+            </div>
+
+            <!-- Option_space -->
+            <div class = "option_space">
+                <div class="calc" id = "option_element" onclick = "calculator()"><a href = "calculator.html"><img src="calc1.png"><br>Calculator</a></div>
+                <div class="conver" id = "option_element"><a href = "curr.html"><img src="curr.png"><br>Currency Converter</a></div>
+                <div class="bmi" id = "option_element"><a href = "bmi.html"><img src="bmi.png"><br>BMI</a></div>
+                <div class="temperature" id = "option_element"><a href = "temp.html"><img src="temp.png"><br>Temperature</a></div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    let string1 = "";
+    var val = 0;
+    var inpu = "";
+    function calc(inp){
+        inpu = inp;
+        if(val === 0){
+            string1 += inp;
+            document.querySelector(".result").innerHTML = string1;
+            localStorage.setItem("saved", string1);
+        }else if((val === 1 || val === 0) && (inp === "+" || inp === "-" || inp === "*" || inp === "/")){
+            string1+= inp;
+            document.querySelector(".result").innerHTML = string1;
+            val = 0;
+
+        }
+        // console.log(inpu);
+        return inpu;
+    }
+
+    function result(){
+        let result = eval(string1);
+        string1 = result;
+        String(string1);
+        console.log(result);
+        document.querySelector(".result").innerHTML = result;
+        document.getElementById("history").style.display = "flex";
+        val = 1;
+    }
+
+    function clear1(){
+        string1 = "";
+        document.querySelector(".result").innerHTML = string1;
+        val = 0;
+        document.getElementById("history").style.display = "none";
+    }
+
+    function dell(){
+        string1 = string1.slice(0,-1);
+        document.querySelector(".result").innerHTML = string1;
+    }
+
+    function history(){
+        let history = localStorage.getItem("saved");
+        console.log(history);
+        document.querySelector(".result").innerHTML = history;
+    }
+
+    function pm(){
+        string1+= "-";
+        document.querySelector(".result").innerHTML = string1;
+    }
+
+    function nav(){
+        document.querySelector(".result_space").style.display = "none";
+        document.querySelector(".func_space").style.display = "none";
+        document.querySelector(".option_space").style.display = "grid";
+    }
+
+    function calculator(){
+        document.querySelector(".result_space").style.display = "block";
+        document.querySelector(".func_space").style.display = "grid";
+        document.querySelector(".option_space").style.display = "none";
+    }
+</script>
+</body>
+</html>

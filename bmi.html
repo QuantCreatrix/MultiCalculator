@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Convertor</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        background-image: url("R.jpg");
+    }
+
+    /* .container{
+        text-align: center;
+    } */
+
+    .calculator_space{
+        display: block;
+        margin-top: 10vh;
+        margin-right: auto;
+        margin-left: auto;
+        width: 320px;
+        height: 570px;
+        background-color: black;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .operator_space{
+        height: 310px;
+        border-bottom: solid rgb(241, 200, 13);
+    }
+
+    .inputs{
+        padding-top: 30px;
+        padding-left: 10px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 25px;
+        display: block;
+    }
+
+    .inputs input{
+        outline: none;
+        font-size: 15px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-bottom: solid rgb(40, 192, 192);
+        padding-top: 10px;
+        width: 50%;
+    }
+
+    .convert{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100px;
+        padding: 5px;
+        background-color: #ffa700;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .convert:hover{
+        opacity: 0.7;
+    }
+
+    .result_space{
+        width: inherit;
+        /* background-color: gray; */
+        margin-left: auto;
+        margin-right: auto ;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .result_value{
+        text-align: center;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 50px;
+        display: inline-flex;
+    }
+
+    .coment{
+        display: grid;
+        font-size: 20px;
+        text-align: left;
+        padding-left: 10px;
+        margin-top: 7px;
+    }
+
+    .card_bar{
+        width: 90%;
+        height: 100px;
+        /* background-color: rgb(93, 93, 93); */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bar{
+        margin-top: 30px;
+        width: 90%;
+        height: 10px;
+        background-color: gray;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progress{
+        width: 0%;
+        height: 30px;
+        background-color: rgb(69, 179, 253);
+        transition: 1s;
+    }
+
+    .go_back{
+        text-align: center;
+        color: white;
+        width: 30px;
+        height: 30px;
+        margin-left: auto;
+        margin-right: auto;
+        border: solid whitesmoke;
+        border-radius: 20px;
+    }
+
+    .go_back a{
+        font-size: 15px;
+        color: wheat;
+        text-decoration: none;
+    }
+</style>
+<body>
+    <div class = "container">
+        <div class = "calculator_space">
+
+            <!-- Operator Space -->
+            <div class="operator_space">
+                <form>
+                    <div class="inputs">
+                        <div class = "height">
+                            <label for="height">Enter your height: 
+                            <br>
+                            <input type="number" placeholder="(in cm)" id = "height">
+                            </label>
+                        </div>
+                        <br><br>
+                        <div class = "weight">
+                            <label for="weight">Enter your weight: 
+                                <br>
+                                <input type="number" placeholder="(in kg)" id = "weight">
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                <br><br>
+                <div class = "convert" onclick = "calc()">Calculate</div>
+            </div>
+
+            <!-- Result Space -->
+            <div class="result_space">
+                <div class = "result_value">
+                <font id = "num" style = "opacity: 0.1;">XX</font>
+                    <div class = "coment">
+                    <font>BMI</font>
+                    <font id = "comment" style="font-size: 15px; color: rgba(55, 193, 239,0);">Normal</font>
+                    </div>
+                </div>
+
+                <hr style="width: 70%;">
+    
+                <div class = "card_bar">
+                    <div class = "bar">
+                        <div class = "progress"><font style = "opacity: 0;">helo</font></div>
+                    </div>
+                    <p style="display: inline-flex; float: left; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">16.0</p>
+                    <p style="display: inline-flex; float: right; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">40.0</p>
+                </div>
+            </div>
+
+            <div class ="go_back"><a href="calculator.html" style="font-size: 30px;">&#x21B5;</a></div>
+        </div>
+
+    <script>
+        function calc(){
+            let height = document.getElementById("height").value;
+            let weight = document.getElementById("weight").value;
+            let h1 = height/100;
+            let result = (weight/(h1*h1)).toFixed(2);
+            let y = ((Math.round(result)-16)/24)*100;
+            if(result>=16 && result<=40){
+                document.querySelector("#num").innerText = result;
+                document.querySelector("#num").style.opacity = "1";
+                document.querySelector(".progress").style.width = y + '%';
+            }else{
+                alert("The BMI doesn't seems good. Check your height and weight input.");
+            }
+
+            if(result>=16 && result<=18.5){
+                    document.querySelector("#comment").innerText = "UnderWeight";
+                    document.querySelector("#comment").style.color = "rgba(243, 247, 38,1)";
+                    document.querySelector(".progress").style.backgroundColor = "rgba(243, 247, 38,1)";
+                } else if(result>18.5 && result<=25){
+                    document.querySelector("#comment").innerText = "Normal";
+                    document.querySelector("#comment").style.color = "rgba(55, 193, 239,1)";
+                    document.querySelector(".progress").style.backgroundColor = "rgba(55, 193, 239,1)";
+                }else{
+                    document.querySelector("#comment").innerText = "OverWeight";
+                    document.querySelector("#comment").style.color = "rgba(233, 42, 58,1)";
+                    document.querySelector(".progress").style.backgroundColor = "rgba(233, 42, 58, 1)";
+                }
+        }
+    </script>
+</body>
+</html>
